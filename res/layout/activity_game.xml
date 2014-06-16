@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#e6e6fa" >
+   
+    
+    <GridLayout android:id="@+id/game_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+        android:columnCount="4"
+      	android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:padding="10dip" >
+        
+        <TextView
+            android:id="@+id/player1_wins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+        	android:layout_column="0"
+        	android:text="" />
+        
+        <TextView
+            android:id="@+id/player1_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+        	android:layout_column="1"
+        	android:paddingLeft="20dip"
+        	android:text="" />
+        
+        <TextView
+            android:id="@+id/player2_wins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+        	android:layout_column="2"
+        	android:paddingLeft="30dip"
+        	android:text=""/>
+        
+        <TextView
+            android:id="@+id/player2_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+        	android:layout_column="3"
+        	android:paddingLeft="20dip"
+        	android:text=""/>
+        
+        <TextView
+            android:id="@+id/draws"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+        	android:layout_column="0"
+        	android:text="@string/draw_label"/>
+        
+        <TextView
+            android:id="@+id/draws_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+        	android:layout_column="1"
+        	android:paddingLeft="20dip"
+        	android:text=""/>
+        
+    </GridLayout>
+    
+    
+    <TextView
+        android:id="@+id/game_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dip"
+        android:paddingBottom="5dip"
+       	android:text=""
+       	android:textStyle="bold"
+       	android:layout_gravity="center_horizontal"/>
+        
+    
+    <GridView android:id="@+id/tic_tac_toe_board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    
+    <GridLayout android:id="@+id/game_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+      	android:stretchMode="columnWidth"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dip" >
+        
+        <Button android:id="@+id/new_game_button"
+	        android:layout_width="160dip"
+	        android:layout_height="wrap_content"
+            android:layout_row="0"
+        	android:layout_column="0"
+            android:text="@string/new_game_label"
+            android:layout_gravity="center_horizontal" />
+        
+        <Button android:id="@+id/exit_button"
+	        android:layout_width="160dip"
+	        android:layout_height="wrap_content"
+            android:layout_row="0"
+        	android:layout_column="1"
+            android:text="@string/exit_game_label"
+            android:layout_gravity="center_horizontal" />
+    </GridLayout>
+    
+</LinearLayout>
