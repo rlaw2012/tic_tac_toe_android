@@ -1,10 +1,12 @@
 package com.ringo.tictactoe.activities.game;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.ringo.tictactoe.game.Board;
 import com.ringo.tictactoe.game.Cell;
 import com.ringo.tictactoe.game.GameController;
 import com.ringo.tictactoe.game.Location;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -19,12 +21,25 @@ public class GridCellAdapter extends BaseAdapter {
 	private Context context;
 	private GameController controller;
 	private Board board;
+	private Map<Integer, Location> positionsMapping;
 
 	public GridCellAdapter(Context context, GameController controller) {
 		super();
 		this.context = context;
 		this.controller = controller;
 		this.board = this.controller.getBoard();
+		this.initPositionsMapping();
+	}
+	
+	@SuppressLint("UseSparseArrays")
+	private void initPositionsMapping() {
+		int count = getCount();
+
+		this.positionsMapping = new HashMap<Integer, Location>();
+		for (int i = 0; i < count; i++) {
+			Location loc = convertPositionToLocation(i);;
+			this.positionsMapping.put(i, loc);
+		}
 	}
 
 	@Override
@@ -34,8 +49,7 @@ public class GridCellAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int pos) {
-		Location loc = convertPositionToLocation(pos);
-		return this.board.getCell(loc);
+		return this.positionsMapping.get(pos);
 	}
 
 	@Override

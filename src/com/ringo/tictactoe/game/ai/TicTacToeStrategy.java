@@ -42,7 +42,7 @@ public class TicTacToeStrategy implements AIStrategy {
 
 	@Override
 	public Location getNextMove(Board board, Player aiPlayer, Player opponent) {
-		BoardScore boardScore = getBestBoardScore(board, this.difficulty, aiPlayer, opponent, true);
+		BoardScore boardScore = getBestBoardScore(board.clone(), this.difficulty, aiPlayer, opponent, true);
 		
 		return boardScore.move;
 	}
@@ -55,7 +55,7 @@ public class TicTacToeStrategy implements AIStrategy {
 		}
 		
 		Vector<Cell> emptyCells = board.getEmptyCells();
-		Board newBoard = board.clone();
+		Board newBoard = board;
 		BoardScore newBoardBestScore;
 		BoardScore bestScore = new BoardScore();
 		
@@ -64,7 +64,7 @@ public class TicTacToeStrategy implements AIStrategy {
 			bestScore.score = Integer.MIN_VALUE;
 			
 			for (Cell cell : emptyCells) {
-				Log.d("TicTacToeStrategy", "---> AI moves to {" + cell.getLocation().getX() + ", " + cell.getLocation().getY() + "}");
+				//Log.d("TicTacToeStrategy", "---> AI moves to {" + cell.getLocation().getX() + ", " + cell.getLocation().getY() + "}");
 				newBoard.move(player, cell.getLocation());
 				if (lookAhead == 1) {
 					newBoardBestScore = new BoardScore(newBoard.getLastMove().getLocation(), this.algorithm.getBoardScore(newBoard, player));
@@ -73,6 +73,9 @@ public class TicTacToeStrategy implements AIStrategy {
 				}
 				
 				if (newBoardBestScore.score > bestScore.score) {
+					bestScore = newBoardBestScore;
+				} else if (newBoardBestScore.score == bestScore.score && (System.nanoTime() % 2 == 0)) {
+					// randomize the board selection so that the game won't be identical all the time.
 					bestScore = newBoardBestScore;
 				}
 				
@@ -85,7 +88,7 @@ public class TicTacToeStrategy implements AIStrategy {
 			bestScore.score = Integer.MAX_VALUE;
 			
 			for (Cell cell : emptyCells) {
-				Log.d("TicTacToeStrategy", "===> Opponent moves to {" + cell.getLocation().getX() + ", " + cell.getLocation().getY() + "}");
+				//Log.d("TicTacToeStrategy", "===> Opponent moves to {" + cell.getLocation().getX() + ", " + cell.getLocation().getY() + "}");
 				newBoard.move(player, cell.getLocation());
 				if (lookAhead == 1) {
 					newBoardBestScore = new BoardScore(newBoard.getLastMove().getLocation(), this.algorithm.getBoardScore(newBoard, player));
@@ -94,6 +97,9 @@ public class TicTacToeStrategy implements AIStrategy {
 				}
 				
 				if (newBoardBestScore.score < bestScore.score) {
+					bestScore = newBoardBestScore;
+				} else if (newBoardBestScore.score == bestScore.score && (System.nanoTime() % 2 == 0)) {
+					// randomize the board selection so that the game won't be identical all the time.
 					bestScore = newBoardBestScore;
 				}
 				
