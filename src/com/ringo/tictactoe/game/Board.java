@@ -40,7 +40,7 @@ public class Board {
 	}
 	
 	public Vector<Player> getPlayers() {
-		return new Vector<Player>(this.players);
+		return this.players;
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class Board {
 	 * @return a list of moves that have been played so far.
 	 */
 	public Vector<Cell> getMoves() {
-		return new Vector<Cell>(this.moves);
+		return this.moves;
 	}
 	
 	/**
